@@ -15,4 +15,3 @@ tabsAppender('.tabs-container')
 cardAppender('.cards-container')
 
 
-//making changes for codegrade!
