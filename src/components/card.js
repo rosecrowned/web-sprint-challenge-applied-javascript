@@ -19,32 +19,34 @@ const Card = (article) => {
   //   </div>
   // </div>
   //
+  // yet again, let's create the elements
+  const articleCard = document.createElement('div')
+  const articleHeadline = document.createElement('div')
+  const articleAuthor = document.createElement('div')
+  const imageDiv = document.createElement('div')
+  const authorImage = document.createElement('img')
+  const writtenBy = document.createElement('span')
+
+  //now nest the elements into each other
+  articleCard.appendChild(articleHeadline)
+  articleCard.appendChild(articleAuthor)
+  articleAuthor.appendChild(imageDiv)
+  imageDiv.appendChild(authorImage)
+  articleAuthor.appendChild(writtenBy)
+
+  //assign proper classes, as needed
+  articleCard.classList.add("card")
+  articleHeadline.classList.add("headline")
+  articleAuthor.classList.add("author")
+  imageDiv.classList.add('img-container')
+
+  //assign text
+  articleHeadline.textContent = article.headline 
+  articleAuthor.textContent = article.author 
+  authorImage.src = `${article.authorPhoto}`
+  writtenBy.textContent = `${article.authorName}`
   
-const articleCard =  document.createElement('div')
-const articleHeadline =  document.createElement('div')
-const articleAuthor = document.createElement('div')
-const imageDiv = document.createElement('div')
-const authorImage = document.createElement('img')
-const writtenBy = document.createElement('span')
-
-articleCard.classList.add('card')
-articleHeadline.classList.add('headline')
-articleAuthor.classList.add('author')
-imageDiv.classList.add('img-container')
-
-articleHeadline.textContent = article.headline
-articleAuthor.textContent = article.authorName
-authorImage.src= `${article.authorPhoto}`
-writtenBy.textContent = `By: ${article.authorName}`
-
-
-articleCard.appendChild(articleHeadline)
-articleCard.appendChild(articleAuthor)
-articleAuthor.appendChild(imageDiv)
-imageDiv.appendChild(authorImage)
-articleAuthor.appendChild(writtenBy)
-
-return articleCard
+  return articleCard
 }
 
 const cardAppender = (selector) => {
@@ -56,23 +58,20 @@ const cardAppender = (selector) => {
   // Create a card from each and every article object in the response, using the Card component.
   // Append each card to the element in the DOM that matches the selector passed to the function.
   //
-  // const cardSelector = document.querySelector('selector')
+  //
 
+  //import the api
   axios.get("https://lambda-times-api.herokuapp.com/articles")
-    .then(res => {
-        console.log(res.data.articles.javascript)
+    .then(res=> {
+      console.log(res.data.articles.javascripts)
 
-        let jsArticles = res.data.articles.javascript
+      let jsArticles = res.data.articles.javascript 
 
-          jsArticles.forEach(element => {
-            document.querySelector(selector).appendChild(Card(element))
-          });
+        jsArticles.forEach(element => {
+          document.querySelector(selector).appendChild(Card(element))
         });
+    });
 
-
-
-
-      
 }
 
 export { Card, cardAppender }

@@ -22,12 +22,12 @@ const Header = (title, date, temp) => {
   newHeader.appendChild(articleTitle)
   newHeader.appendChild(articleTemp)
 
-  //assign classes
+  //assigning the  classes
   newHeader.classList.add('header')
   articleDate.classList.add('date')
   articleTemp.classList.add('temp')
 
-  //assign text content
+  //assign text contents
   articleDate.textContent = `${date}`
   articleTitle.textContent = `${title}`
   articleTemp.textContent = `${temp}`
@@ -44,7 +44,7 @@ const headerAppender = (selector) => {
   // It should append the header to the element in the DOM that matches the given selector.
   //
    const given = document.querySelector(selector)
-   given.append(Header("Lambda Times", "January 6, 2021", "26°"))
+   given.append(Header("Lambda Times", "May 15, 2021", "100°"))
 
   
     

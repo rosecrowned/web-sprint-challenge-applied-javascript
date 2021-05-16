@@ -15,34 +15,29 @@ const Tabs = (topics) => {
   //   <div class="tab">technology</div>
   // </div>
   //
-  //create
-  const menuList = document.createElement('div')
-  menuList.classList.add('topics')  
-  
 
-  topics.forEach(Element=> {
-    const menuItem = document.createElement('div')
-    //add class to tabs
-    menuItem.classList.add('tab')
-    //add text to the individual tabs
-    menuItem.textContent = Element
-    // hierarchy
-    menuList.appendChild(menuItem)
+ // lets loop it and make it easy to assign topics to tabs
 
-    return menuList
+ const menuList = document.createElement('div')
+ menuList.classList.add('topics')
 
+ topics.forEach(Element => {
+   const menuItem = document.createElement('div')
+   //class to the item
+   menuItem.classList.add('tab')
+   //text to each tab
+   menuItem.textContent = Element
+   //stack them in the right nested order
+   menuList.appendChild(menuItem)
+
+   return menuList
+ 
   })
 
+  return menuList 
 
-  //hierarchy
-  // menuList.appendChild('topics')
-  
-  // //classes
-  // menuList.classList.add('topics')
-  // topics.classList.add('tab')
-
-return menuList
 }
+
 
 
 const tabsAppender = (selector) => {
@@ -53,11 +48,13 @@ const tabsAppender = (selector) => {
   // Find the array of topics inside the response, and create the tabs using the Tabs component.
   // Append the tabs to the element in the DOM that matches the selector passed to the function.
   //
-  // const tabSelector = document.querySelector('selector')
+  // 
+
   axios.get("https://lambda-times-api.herokuapp.com/topics")
     .then(res => {
-      document.querySelector(selector).appendChild(Tabs(res.data.topics));
-  })
-  
+      document.querySelector(selector).appendChild(Tabs(res.data.topics))
+    })
+   
 }
-export { Tabs, tabsAppender }
+
+export { Tabs, tabsAppender}
